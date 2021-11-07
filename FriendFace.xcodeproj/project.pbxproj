@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B673E9F42737D5C500E4062F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673E9F32737D5C500E4062F /* DetailView.swift */; };
 		B6C1E8352732C80300D41B15 /* FriendFaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1E8342732C80300D41B15 /* FriendFaceApp.swift */; };
 		B6C1E8372732C80300D41B15 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1E8362732C80300D41B15 /* ContentView.swift */; };
 		B6C1E8392732C80500D41B15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6C1E8382732C80500D41B15 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B673E9F32737D5C500E4062F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		B6C1E8312732C80300D41B15 /* FriendFace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendFace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6C1E8342732C80300D41B15 /* FriendFaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendFaceApp.swift; sourceTree = "<group>"; };
 		B6C1E8362732C80300D41B15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				B6C1E85E2732C82700D41B15 /* Structs.swift */,
 				B6C1E8382732C80500D41B15 /* Assets.xcassets */,
 				B6C1E83A2732C80500D41B15 /* Preview Content */,
+				B673E9F32737D5C500E4062F /* DetailView.swift */,
 			);
 			path = FriendFace;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6C1E85F2732C82700D41B15 /* Structs.swift in Sources */,
+				B673E9F42737D5C500E4062F /* DetailView.swift in Sources */,
 				B6C1E8372732C80300D41B15 /* ContentView.swift in Sources */,
 				B6C1E8352732C80300D41B15 /* FriendFaceApp.swift in Sources */,
 			);

@@ -12,58 +12,79 @@ struct ContentView: View {
     
 
     var body: some View {
-        VStack {
-            Text("\(users.count)")
-                .padding()
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(users, id: \.self) { user in
+                        NavigationLink(destination: DetailView(user: user, users: users)) {
+                            HStack {
+                                Image(systemName: "person.crop.circle")
+                                    .foregroundColor(Color.random)
+                                    .font(.largeTitle)
+                                VStack(alignment: .leading) {
+                                    Text(user.name)
+                                        .font(.headline)
+                                    Text("Age: \(user.age)")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Friend Face")
         }
         .onAppear(perform: loadData)
     }
+
     
     func loadData() {
-        
         guard let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json") else {
-                print("Invalid URL")
+            print("There was an error")
             return
         }
         
         let request = URLRequest(url: url)
-//
-//        URLSession.shared.dataTask(with: request) { data, response, error in
-//            if let data = data {
-//                if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-//                    DispatchQueue.main.async {
-//                        self.results = decodedResponse.results
-//                    }
-//                    return
-//                }
-//
-//
-//            }
-//
-//            print("There was an error: \(error?.localizedDescription ?? "Unknown Error")")
-//
-//        }.resume()
+        
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             
-            guard let userData = data else {
-                print("No data in response: \(error?.localizedDescription ?? "Unkown Error")")
-                return
+            if let userData = data {
+                
+                
+                  let decoder = JSONDecoder()
+                  decoder.dateDecodingStrategy = .iso8601
+            
+                
+                if let decodedUsers = try? decoder.decode([User].self, from: userData) {
+                    DispatchQueue.main.async {
+                        users = decodedUsers
+                    }
+                    
+                  return
+                }
+                
+                
             }
             
-            let userDecoder = JSONDecoder()
+            print("Fetch Failed: \(error?.localizedDescription ?? "NA")")
             
-            do {
-                users = try userDecoder.decode([User].self, from: userData)
-                return
-            } catch {
-                print("No data in response: \(error.localizedDescription)")
-            }
-            
-            print("No data in response: \(error?.localizedDescription ?? "Unkown Error")")
             
         }.resume()
         
+    }
+    
+
+    
+}
+
+
+extension Color {
+    static var random: Color {
+        return Color(
+            red: .random(in: 0...1),
+            green: .random(in: 0...1),
+            blue: .random(in: 0...1)
+        )
     }
 }
 

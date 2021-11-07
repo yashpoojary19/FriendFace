@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct Friend: Codable, Identifiable {
+struct Friend: Codable, Identifiable, Hashable {
     var id: UUID
     var name: String
 }
 
 
-struct User: Codable, Identifiable {
+struct User: Codable, Identifiable, Hashable {
     var id: UUID
     var isActive: Bool
     var name: String
@@ -22,7 +22,7 @@ struct User: Codable, Identifiable {
     var email: String
     var address: String
     var about: String
-    var registered: String
+    var registered: Date
     var tags: [String]
     var friends: [Friend]
 }
