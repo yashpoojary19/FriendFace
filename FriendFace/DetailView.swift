@@ -12,50 +12,33 @@ struct DetailView: View {
     
     var users: [User]
     
-    
     var body: some View {
         
-        ScrollView {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Company: \(user.company)")
-                                .font(.headline)
+        List {
+            Section(header: Text("Details")) {
+                Text("Company: \(user.company)")
+                        .font(.headline)
 
-                        Text(user.address)
-                            .font(.title)
-                        
-                        Text(user.about)
-                    }
+                Text(user.address)
+                    .font(.title)
                 
+                Text(user.about)
+            }
+            
+            Section(header: Text("Friends")) {
+                ForEach(user.friends) { friend in
+                    NavigationLink(destination: DetailView(user: users.first(where: {$0.id == friend.id})!, users: users) ) {
                     
-                        Text("Friends: ")
-                            .foregroundColor(.green)
-                            .font(.title)
-                    
-                        
-                        ForEach(user.friends){ friend in
-                            NavigationLink(destination: DetailView(user: users.first(where: {_ in
-                                user.id == friend.id
-                            }) ?? [, users: users)) {
-                                Text(friend.name)
-                            }
-                        }
-                            
-                        Spacer()
-                        
-                    }
-                .navigationTitle(user.name)
-                .padding(.horizontal)
+                    Text(friend.name)
+                }
+                
             }
         }
+        
+            .navigationTitle(user.name)
+        
+        }
+    }
+}
 
 
-
-
-//
-//struct DetailView_Previews: PreviewProvider {
-//    static let user = User(from: <#Decoder#>)
-//
-//    static var previews: some View {
-//        DetailView(user: users[1])
-//    }
-//}
